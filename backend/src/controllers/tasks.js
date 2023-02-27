@@ -1,4 +1,9 @@
-export const getTasks = (req, res) => {
+import { connect } from "../database";
+
+export const getTasks = async (req, res) => {
+    const connection = await connect();
+    const [rows] = await connection.execute("SELECT * FROM tasks");
+    console.log(rows);
     res.json("hello world");
 }
 
